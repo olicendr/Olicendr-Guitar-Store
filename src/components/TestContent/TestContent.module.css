@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.wrapper {
+  margin: 12px;
+  width: 290px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* text-align: center; */
+}
+
+.title {
+  text-align: center;
+}
+
+.item__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.item__buttons button {
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px;
+  border-radius: 3px;
+}

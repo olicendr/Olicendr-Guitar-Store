@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1em;
+}
+
+body {
+  background-color: #efefef;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.side {
+  grid-area: sidebar;
+}
+
+.main {
+  grid-area: main;
+}
+
+.content {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas: "sidebar" "main";
+}

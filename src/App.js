@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
-import TestContent from "./components/TestContent";
+import Content from "./components/Content";
 
 import "./App.css";
 
@@ -12,7 +12,7 @@ function App() {
       <Header />
       <div className="content">
         <SideBar className="side" />
-        <TestContent className="main" />
+        <Content className="main" />
       </div>
     </div>
   );

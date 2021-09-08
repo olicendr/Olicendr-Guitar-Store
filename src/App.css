@@ -12,6 +12,7 @@ button {
 
 body {
   background-color: #efefef;
+  width: calc(100vw - 34px);
 }
 
 .container {

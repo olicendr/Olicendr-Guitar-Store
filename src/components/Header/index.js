@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Header.module.css";
 
-const Header = () => {
+const Header = ({ onCartClick, onFavoritesClick }) => {
   return (
     <header className={classes.header}>
       <img src="/images/logo.svg" alt="logo"></img>
@@ -10,8 +10,16 @@ const Header = () => {
         <input type="text" />
         <button>Search</button>
       </form>
-      <img src="/images/cart.svg" alt="shopping cart"></img>
-      <img src="/images/favorites.svg" alt="favorites"></img>
+      <img
+        src="/images/cart.svg"
+        alt="shopping cart"
+        onClick={onCartClick}
+      ></img>
+      <img
+        src="/images/favorites.svg"
+        alt="favorites"
+        onClick={onFavoritesClick}
+      ></img>
     </header>
   );
 };

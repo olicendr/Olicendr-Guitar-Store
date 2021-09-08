@@ -21,3 +21,8 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
+.title {
+  width: 300px;
+  text-align: center;
+}

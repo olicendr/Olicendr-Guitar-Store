@@ -7,22 +7,25 @@ const SideBar = () => {
     <div className={classes.sidebar}>
       <ul>
         <li className={classes.sidebar__items}>
-          <a href="#">Electric Guitars</a>
+          <a href="/">All</a>
         </li>
         <li className={classes.sidebar__items}>
-          <a href="#">Acoustic Guitars</a>
+          <a href="/electric-guitars">Electric Guitars</a>
         </li>
         <li className={classes.sidebar__items}>
-          <a href="#">Basses</a>
+          <a href="/acoustic-guitars">Acoustic Guitars</a>
         </li>
         <li className={classes.sidebar__items}>
-          <a href="#">Drums</a>
+          <a href="/basses">Basses</a>
         </li>
         <li className={classes.sidebar__items}>
-          <a href="#">Electric Guitar Amps</a>
+          <a href="/drums">Drums</a>
         </li>
         <li className={classes.sidebar__items}>
-          <a href="#">Electric Guitar Effects</a>
+          <a href="/electricguitar-amps">Electric Guitar Amps</a>
+        </li>
+        <li className={classes.sidebar__items}>
+          <a href="/electric-guitar-effects">Electric Guitar Effects</a>
         </li>
       </ul>
     </div>

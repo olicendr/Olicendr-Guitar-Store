@@ -4,7 +4,10 @@ import classes from "./Header.module.css";
 const Header = ({ onCartClick, onFavoritesClick }) => {
   return (
     <header className={classes.header}>
-      <img src="/images/logo.svg" alt="logo"></img>
+      <a href="/">
+        <img src="/images/logo.svg" alt="logo"></img>
+      </a>
+
       <h1>Olicendr Music Store</h1>
       <form>
         <input type="text" />

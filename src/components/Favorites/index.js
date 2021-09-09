@@ -21,9 +21,11 @@ const Favorites = ({ items, onRemoveFromFavorites, onAddToCart }) => {
   });
   return (
     <div className={classes.favorites}>
-      <div className={classes.container}>
-        {items.length ? renderedList : <h2>Nothing in favorites</h2>}
-      </div>
+      {items.length ? (
+        <div className={classes.container}>{renderedList}</div>
+      ) : (
+        <h2>Nothing in favorites</h2>
+      )}
     </div>
   );
 };

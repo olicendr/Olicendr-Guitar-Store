@@ -30,29 +30,35 @@ function App() {
   useEffect(() => {
     axios
       .get("https://61372140eac1410017c18156.mockapi.io/storeData")
-      .then((res) => {
-        setAllItems(res.data);
+      .then((response) => {
+        setAllItems(response.data);
       });
   }, []);
 
   let onAddToCart = (item) => {
-    let payload = {
-      itemId: item.itemId,
-      title: item.name,
-      price: item.price,
-      imgSrc: item.imgSrc,
-    };
-    setCartItems([...cartItems, payload]);
+    if (!cartItems.some((e) => e.title === item.title)) {
+      let payload = {
+        itemId: item.itemId,
+        title: item.title,
+        price: item.price,
+        imgSrc: item.imgSrc,
+      };
+      setCartItems([...cartItems, payload]);
+    }
+    return;
   };
 
   let onAddtoFavorites = (item) => {
-    let payload = {
-      itemId: item.itemId,
-      title: item.name,
-      price: item.price,
-      imgSrc: item.imgSrc,
-    };
-    setFavoriteItems([...favoriteItems, payload]);
+    if (!favoriteItems.some((e) => e.title === item.title)) {
+      let payload = {
+        itemId: item.itemId,
+        title: item.title,
+        price: item.price,
+        imgSrc: item.imgSrc,
+      };
+      setFavoriteItems([...favoriteItems, payload]);
+    }
+    return;
   };
 
   let onRemoveFromCart = (removedItem) => {

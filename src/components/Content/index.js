@@ -8,7 +8,7 @@ const Content = ({ items, onAddToCart, onAddtoFavorites }) => {
         <div>
           <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
         </div>
-        <p className={classes.title}>{item.name}</p>
+        <p className={classes.title}>{item.title}</p>
         <p>Price: {item.price}</p>
         <div className={classes.item__buttons}>
           <button onClick={() => onAddToCart(item)}>Add to Cart</button>

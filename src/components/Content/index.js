@@ -13,32 +13,33 @@ const Content = () => {
       });
   }, []);
 
-  const renderedList = storeItems.map((storeItems) => {
-    let onAddToCart = async () => {
-      let payload = {
-        title: storeItems.name,
-        price: storeItems.price,
-        imgSrc: storeItems.imgSrc,
-      };
-
-      await axios.post(
-        "https://61372140eac1410017c18156.mockapi.io/cart",
-        payload
-      );
+  let onAddToCart = async (item) => {
+    let payload = {
+      itemId: item.itemId,
+      title: item.name,
+      price: item.price,
+      imgSrc: item.imgSrc,
     };
 
+    await axios.post(
+      "https://61372140eac1410017c18156.mockapi.io/cart",
+      payload
+    );
+  };
+
+  const renderedList = storeItems.map((storeItem) => {
     return (
-      <div className={classes.wrapper} key={storeItems.title}>
+      <div key={storeItem.id} className={classes.wrapper}>
         <div>
           <img
-            src={`images/items/` + storeItems.imgSrc}
-            alt={storeItems.title}
+            src={`images/items/` + storeItem.imgSrc}
+            alt={storeItem.title}
           ></img>
         </div>
-        <p className={classes.title}>{storeItems.name}</p>
-        <p>Price: {storeItems.price}</p>
+        <p className={classes.title}>{storeItem.name}</p>
+        <p>Price: {storeItem.price}</p>
         <div className={classes.item__buttons}>
-          <button onClick={onAddToCart}>Add to Cart</button>
+          <button onClick={() => onAddToCart(storeItem)}>Add to Cart</button>
           <button>Add to Favorites</button>
         </div>
       </div>

@@ -13,16 +13,27 @@ const Cart = () => {
       });
   }, []);
 
-  console.log(cartItems);
+  let onRemoveFromCart = async (item) => {
+    await axios
+      .delete(`https://61372140eac1410017c18156.mockapi.io/cart/${item.id}`)
+      .then(() => {
+        axios
+          .get("https://61372140eac1410017c18156.mockapi.io/cart")
+          .then((res) => {
+            setCartItems(res.data);
+          });
+      });
+  };
 
   const renderedList = cartItems.map((item) => {
     return (
-      <div className={classes.cart__item}>
+      <div key={item.id} className={classes.cart__item}>
         <div className={classes.item__picture}>
-          <img src={`images/items/` + item.imgSrc}></img>
+          <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
         </div>
         <p className={classes.title}>{item.title}</p>
         <p>{item.price}</p>
+        <button onClick={() => onRemoveFromCart(item)}>Remove</button>
       </div>
     );
   });

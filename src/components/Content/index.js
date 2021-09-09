@@ -1,46 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import classes from "./Content.module.css";
-import axios from "axios";
 
-const Content = () => {
-  const [storeItems, setStoreItems] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://61372140eac1410017c18156.mockapi.io/storeData")
-      .then((res) => {
-        setStoreItems(res.data);
-      });
-  }, []);
-
-  let onAddToCart = async (item) => {
-    let payload = {
-      itemId: item.itemId,
-      title: item.name,
-      price: item.price,
-      imgSrc: item.imgSrc,
-    };
-
-    await axios.post(
-      "https://61372140eac1410017c18156.mockapi.io/cart",
-      payload
-    );
-  };
-
-  const renderedList = storeItems.map((storeItem) => {
+const Content = ({ items, onAddToCart, onAddtoFavorites }) => {
+  const renderedList = items.map((item) => {
     return (
-      <div key={storeItem.id} className={classes.wrapper}>
+      <div key={item.id} className={classes.wrapper}>
         <div>
-          <img
-            src={`images/items/` + storeItem.imgSrc}
-            alt={storeItem.title}
-          ></img>
+          <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
         </div>
-        <p className={classes.title}>{storeItem.name}</p>
-        <p>Price: {storeItem.price}</p>
+        <p className={classes.title}>{item.name}</p>
+        <p>Price: {item.price}</p>
         <div className={classes.item__buttons}>
-          <button onClick={() => onAddToCart(storeItem)}>Add to Cart</button>
-          <button>Add to Favorites</button>
+          <button onClick={() => onAddToCart(item)}>Add to Cart</button>
+          <button onClick={() => onAddtoFavorites(item)}>
+            Add to Favorites
+          </button>
         </div>
       </div>
     );

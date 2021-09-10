@@ -5,7 +5,7 @@ const Content = ({ items, onAddToCart, onAddtoFavorites }) => {
   const renderedList = items.map((item) => {
     return (
       <div key={item.id} className={classes.wrapper}>
-        <div>
+        <div className={classes.imageWrapper}>
           <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
         </div>
         <p className={classes.title}>{item.title}</p>

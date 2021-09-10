@@ -35,3 +35,9 @@
   padding: 10px;
   border-radius: 3px;
 }
+
+.imageWrapper {
+  height: 250px;
+  display: flex;
+  align-items: center;
+}

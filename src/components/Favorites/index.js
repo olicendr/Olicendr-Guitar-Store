@@ -5,7 +5,7 @@ const Favorites = ({ items, onRemoveFromFavorites, onAddToCart }) => {
   const renderedList = items.map((item) => {
     return (
       <div className={classes.wrapper} key={item.title}>
-        <div>
+        <div className={classes.imageWrapper}>
           <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
         </div>
         <p className={classes.title}>{item.title}</p>

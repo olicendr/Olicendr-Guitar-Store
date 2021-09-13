@@ -21,16 +21,10 @@ form {
 }
 
 input {
-  flex-grow: 2;
+  width: 200px;
   border: none;
   background-color: #efefef;
   height: 30px;
   outline: none;
   padding: 5px;
-}
-
-button {
-  cursor: pointer;
-  padding: 0 10px;
-  border: none;
 }

@@ -1,7 +1,12 @@
 import React from "react";
 import classes from "./Header.module.css";
 
-const Header = ({ onCartClick, onFavoritesClick }) => {
+const Header = ({
+  onCartClick,
+  onFavoritesClick,
+  searchTerm,
+  setSearchTerm,
+}) => {
   return (
     <header className={classes.header}>
       <a href="/">
@@ -10,8 +15,12 @@ const Header = ({ onCartClick, onFavoritesClick }) => {
 
       <h1>Olicendr Music Store</h1>
       <form>
-        <input type="text" />
-        <button>Search</button>
+        <input
+          type="text"
+          value={searchTerm}
+          placeholder="Search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </form>
       <img
         src="/images/cart.svg"

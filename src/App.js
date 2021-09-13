@@ -26,6 +26,8 @@ function App() {
   const [allItems, setAllItems] = useState([]);
   const [cartItems, setCartItems] = useLocalState([], "cartItems");
   const [favoriteItems, setFavoriteItems] = useLocalState([], "favoriteItems");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     axios
@@ -34,6 +36,19 @@ function App() {
         setAllItems(response.data);
       });
   }, []);
+
+  useEffect(() => {
+    if (searchTerm) {
+      setTimeout(() => {
+        const searchItems = allItems.filter((item) =>
+          item.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredItems(searchItems);
+      }, 500);
+    } else {
+      setFilteredItems([]);
+    }
+  }, [searchTerm, allItems]);
 
   let onAddToCart = (item) => {
     if (!cartItems.some((e) => e.title === item.title)) {
@@ -44,6 +59,7 @@ function App() {
         imgSrc: item.imgSrc,
       };
       setCartItems([...cartItems, payload]);
+      onRemoveFromFavorites(item);
     }
     return;
   };
@@ -87,7 +103,12 @@ function App() {
 
   return (
     <div className="container">
-      <Header onCartClick={onCartClick} onFavoritesClick={onFavoritesClick} />
+      <Header
+        onCartClick={onCartClick}
+        onFavoritesClick={onFavoritesClick}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
       {isCartOpen ? (
         <Cart items={cartItems} onRemoveFromCart={onRemoveFromCart} />
       ) : isFavoritesOpen ? (
@@ -101,7 +122,7 @@ function App() {
           <SideBar className="side" />
           <Content
             className="main"
-            items={allItems}
+            items={filteredItems && searchTerm ? filteredItems : allItems}
             onAddToCart={onAddToCart}
             onAddtoFavorites={onAddtoFavorites}
           />

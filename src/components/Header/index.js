@@ -14,7 +14,7 @@ const Header = ({
       </a>
 
       <h1>Olicendr Music Store</h1>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           value={searchTerm}

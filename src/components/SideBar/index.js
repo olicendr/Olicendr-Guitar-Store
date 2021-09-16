@@ -2,32 +2,33 @@ import React from "react";
 
 import classes from "./SideBar.module.css";
 
-const SideBar = () => {
+const SideBar = ({ onCategoryClick }) => {
+  let itemInfo = [
+    { type: "all", title: "All" },
+    { type: "electric guitar", title: "Electric Guitars" },
+    { type: "acoustic guitar", title: "Acoustic Gutiars" },
+    { type: "electric guitar amp", title: "Electric Guitar Amps" },
+    { type: "electric guitar effect", title: "Electric Guitar Effects" },
+    { type: "basses", title: "Basses" },
+    { type: "drums", title: "Drums" },
+  ];
+
+  const renderedList = itemInfo.map(item => {
+    return (
+      <li key={item.title}>
+        <button
+          className={classes.sideBarItem}
+          onClick={() => onCategoryClick(item)}
+        >
+          {item.title}
+        </button>
+      </li>
+    );
+  });
+
   return (
     <div className={classes.sidebar}>
-      <ul>
-        <li className={classes.sidebar__items}>
-          <a href="/">All</a>
-        </li>
-        <li className={classes.sidebar__items}>
-          <a href="/electric-guitars">Electric Guitars</a>
-        </li>
-        <li className={classes.sidebar__items}>
-          <a href="/acoustic-guitars">Acoustic Guitars</a>
-        </li>
-        <li className={classes.sidebar__items}>
-          <a href="/basses">Basses</a>
-        </li>
-        <li className={classes.sidebar__items}>
-          <a href="/drums">Drums</a>
-        </li>
-        <li className={classes.sidebar__items}>
-          <a href="/electricguitar-amps">Electric Guitar Amps</a>
-        </li>
-        <li className={classes.sidebar__items}>
-          <a href="/electric-guitar-effects">Electric Guitar Effects</a>
-        </li>
-      </ul>
+      <ul>{renderedList}</ul>
     </div>
   );
 };

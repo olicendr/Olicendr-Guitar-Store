@@ -14,12 +14,12 @@ const Header = ({
       </a>
 
       <h1>Olicendr Music Store</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={e => e.preventDefault()}>
         <input
           type="text"
           value={searchTerm}
           placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
         />
       </form>
       <img

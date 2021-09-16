@@ -40,13 +40,6 @@ h2 {
   align-items: center;
 }
 
-.item__buttons button {
-  font-size: 18px;
-  font-weight: 400;
-  padding: 10px;
-  border-radius: 3px;
-}
-
 .imageWrapper {
   height: 250px;
   display: flex;

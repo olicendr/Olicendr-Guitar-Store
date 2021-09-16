@@ -28,11 +28,12 @@ function App() {
   const [favoriteItems, setFavoriteItems] = useLocalState([], "favoriteItems");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
+  const [categorisedItems, setCategorisedItems] = useState([]);
 
   useEffect(() => {
     axios
       .get("https://61372140eac1410017c18156.mockapi.io/storeData")
-      .then((response) => {
+      .then(response => {
         setAllItems(response.data);
       });
   }, []);
@@ -40,7 +41,7 @@ function App() {
   useEffect(() => {
     if (searchTerm) {
       setTimeout(() => {
-        const searchItems = allItems.filter((item) =>
+        const searchItems = allItems.filter(item =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredItems(searchItems);
@@ -50,8 +51,8 @@ function App() {
     }
   }, [searchTerm, allItems]);
 
-  let onAddToCart = (item) => {
-    if (!cartItems.some((e) => e.title === item.title)) {
+  let onAddToCart = item => {
+    if (!cartItems.some(e => e.title === item.title)) {
       let payload = {
         itemId: item.itemId,
         title: item.title,
@@ -64,8 +65,8 @@ function App() {
     return;
   };
 
-  let onAddtoFavorites = (item) => {
-    if (!favoriteItems.some((e) => e.title === item.title)) {
+  let onAddtoFavorites = item => {
+    if (!favoriteItems.some(e => e.title === item.title)) {
       let payload = {
         itemId: item.itemId,
         title: item.title,
@@ -77,16 +78,14 @@ function App() {
     return;
   };
 
-  let onRemoveFromCart = (removedItem) => {
-    let cartWithoutRemovedItem = cartItems.filter(
-      (item) => item !== removedItem
-    );
+  let onRemoveFromCart = removedItem => {
+    let cartWithoutRemovedItem = cartItems.filter(item => item !== removedItem);
     setCartItems(cartWithoutRemovedItem);
   };
 
-  let onRemoveFromFavorites = (removedItem) => {
+  let onRemoveFromFavorites = removedItem => {
     let favoritesWithoutRemovedItem = favoriteItems.filter(
-      (item) => item !== removedItem
+      item => item !== removedItem
     );
     setFavoriteItems(favoritesWithoutRemovedItem);
   };
@@ -101,6 +100,14 @@ function App() {
     setIsCartOpen(false);
   };
 
+  let onCategoryClick = category => {
+    if (category.type === "all") {
+      setCategorisedItems([]);
+    } else {
+      setCategorisedItems(allItems.filter(item => item.type === category.type));
+    }
+  };
+  const whatToShow = categorisedItems.length ? categorisedItems : allItems;
   return (
     <div className="container">
       <Header
@@ -119,10 +126,10 @@ function App() {
         />
       ) : allItems.length ? (
         <div className="content">
-          <SideBar className="side" />
+          <SideBar className="side" onCategoryClick={onCategoryClick} />
           <Content
             className="main"
-            items={filteredItems && searchTerm ? filteredItems : allItems}
+            items={filteredItems && searchTerm ? filteredItems : whatToShow}
             onAddToCart={onAddToCart}
             onAddtoFavorites={onAddtoFavorites}
           />

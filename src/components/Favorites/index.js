@@ -1,8 +1,9 @@
 import React from "react";
 import classes from "./Favorites.module.css";
+import OliButton from "../UI/OliButton";
 
 const Favorites = ({ items, onRemoveFromFavorites, onAddToCart }) => {
-  const renderedList = items.map((item) => {
+  const renderedList = items.map(item => {
     return (
       <div className={classes.wrapper} key={item.title}>
         <div className={classes.imageWrapper}>
@@ -11,10 +12,10 @@ const Favorites = ({ items, onRemoveFromFavorites, onAddToCart }) => {
         <p className={classes.title}>{item.title}</p>
         <p>Price: {item.price}</p>
         <div className={classes.item__buttons}>
-          <button onClick={() => onAddToCart(item)}>Add to Cart</button>
-          <button onClick={() => onRemoveFromFavorites(item)}>
+          <OliButton onClick={() => onAddToCart(item)}>Add to Cart</OliButton>
+          <OliButton onClick={() => onRemoveFromFavorites(item)}>
             Remove from Favorites
-          </button>
+          </OliButton>
         </div>
       </div>
     );

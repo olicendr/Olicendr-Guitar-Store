@@ -11,11 +11,15 @@
 .wrapper {
   margin: 12px;
   width: 290px;
-  height: 400px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;
+  position: relative;
+  -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .title {
@@ -27,13 +31,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-
-.item__buttons button {
-  font-size: 18px;
-  font-weight: 400;
-  padding: 10px;
-  border-radius: 3px;
+  margin-bottom: 10px;
 }
 
 .imageWrapper {
@@ -42,8 +40,25 @@
   align-items: center;
 }
 
-button {
-  cursor: pointer;
-  padding: 0 10px;
-  border: none;
+.wrapper::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.wrapper:hover {
+  -webkit-transform: scale(1.05, 1.05);
+  transform: scale(1.05, 1.05);
+}
+
+.wrapper:hover::after {
+  opacity: 1;
 }

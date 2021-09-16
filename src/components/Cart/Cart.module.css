@@ -27,10 +27,3 @@ h2 {
   width: 300px;
   text-align: center;
 }
-
-.cart__item button {
-  font-size: 18px;
-  font-weight: 400;
-  padding: 10px;
-  border-radius: 3px;
-}

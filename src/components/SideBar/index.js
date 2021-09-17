@@ -5,10 +5,10 @@ import classes from "./SideBar.module.css";
 const SideBar = ({ onCategoryClick }) => {
   let itemInfo = [
     { type: "all", title: "All" },
-    { type: "electric guitar", title: "Electric Guitars" },
-    { type: "acoustic guitar", title: "Acoustic Gutiars" },
-    { type: "electric guitar amp", title: "Electric Guitar Amps" },
-    { type: "electric guitar effect", title: "Electric Guitar Effects" },
+    { type: "electric guitars", title: "Electric Guitars" },
+    { type: "acoustic guitars", title: "Acoustic Gutiars" },
+    { type: "electric guitar amps", title: "Electric Guitar Amps" },
+    { type: "electric guitar effects", title: "Electric Guitar Effects" },
     { type: "basses", title: "Basses" },
     { type: "drums", title: "Drums" },
   ];

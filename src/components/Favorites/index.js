@@ -1,22 +1,23 @@
 import React from "react";
 import classes from "./Favorites.module.css";
-import OliButton from "../UI/OliButton";
+import Card from "../Card";
 
-const Favorites = ({ items, onRemoveFromFavorites, onAddToCart }) => {
+const Favorites = ({ items, onAddToCart, onRemoveFromFavorites }) => {
   const renderedList = items.map(item => {
     return (
-      <div className={classes.wrapper} key={item.title}>
-        <div className={classes.imageWrapper}>
-          <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
-        </div>
-        <p className={classes.title}>{item.title}</p>
-        <p>Price: {item.price}</p>
-        <div className={classes.item__buttons}>
-          <OliButton onClick={() => onAddToCart(item)}>Add to Cart</OliButton>
-          <OliButton onClick={() => onRemoveFromFavorites(item)}>
-            Remove from Favorites
-          </OliButton>
-        </div>
+      <div className={classes.wrapper}>
+        <Card
+          key={item.id}
+          item={item}
+          firstButton={{
+            handler: onAddToCart,
+            title: "Add to Cart",
+          }}
+          secondButton={{
+            handler: onRemoveFromFavorites,
+            title: "Remove",
+          }}
+        />
       </div>
     );
   });

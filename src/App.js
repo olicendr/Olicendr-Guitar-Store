@@ -107,6 +107,7 @@ function App() {
       setCategorisedItems(allItems.filter(item => item.type === category.type));
     }
   };
+
   const whatToShow = categorisedItems.length ? categorisedItems : allItems;
   return (
     <div className="container">

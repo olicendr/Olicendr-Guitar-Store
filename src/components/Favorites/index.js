@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./Favorites.module.css";
 import Card from "../Card";
+import OliButton from "../UI/OliButton";
 
 const Favorites = ({ items, onAddToCart, onRemoveFromFavorites }) => {
   const renderedList = items.map(item => {
@@ -23,10 +25,24 @@ const Favorites = ({ items, onAddToCart, onRemoveFromFavorites }) => {
   });
   return (
     <div className={classes.favorites}>
+      <div className={classes.returnBtn}>
+        <Link to="/">
+          <OliButton>Back to Store</OliButton>
+        </Link>
+      </div>
       {items.length ? (
         <div className={classes.container}>{renderedList}</div>
       ) : (
-        <h2>Nothing in favorites</h2>
+        <div
+          style={{
+            height: "400px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h2>Nothing in favorites</h2>
+        </div>
       )}
     </div>
   );

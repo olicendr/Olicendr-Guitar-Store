@@ -1,17 +1,13 @@
 import React from "react";
 import classes from "./Header.module.css";
+import { Link } from "react-router-dom";
 
-const Header = ({
-  onCartClick,
-  onFavoritesClick,
-  searchTerm,
-  setSearchTerm,
-}) => {
+const Header = ({ searchTerm, setSearchTerm }) => {
   return (
     <header className={classes.header}>
-      <a href="/">
+      <Link to="/">
         <img src="/images/logo.svg" alt="logo"></img>
-      </a>
+      </Link>
 
       <h1>Olicendr Music Store</h1>
       <form onSubmit={e => e.preventDefault()}>
@@ -22,16 +18,13 @@ const Header = ({
           onChange={e => setSearchTerm(e.target.value)}
         />
       </form>
-      <img
-        src="/images/cart.svg"
-        alt="shopping cart"
-        onClick={onCartClick}
-      ></img>
-      <img
-        src="/images/favorites.svg"
-        alt="favorites"
-        onClick={onFavoritesClick}
-      ></img>
+      <Link to="/cart">
+        <img src="/images/cart.svg" alt="shopping cart"></img>
+      </Link>
+
+      <Link to="/favorites">
+        <img src="/images/favorites.svg" alt="favorites"></img>
+      </Link>
     </header>
   );
 };

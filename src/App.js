@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
@@ -21,13 +22,11 @@ let useLocalState = (defaultValue, key) => {
 };
 
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
   const [allItems, setAllItems] = useState([]);
   const [cartItems, setCartItems] = useLocalState([], "cartItems");
   const [favoriteItems, setFavoriteItems] = useLocalState([], "favoriteItems");
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [searchedItems, setSearchedItems] = useState([]);
   const [categorisedItems, setCategorisedItems] = useState([]);
 
   useEffect(() => {
@@ -44,10 +43,10 @@ function App() {
         const searchItems = allItems.filter(item =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setFilteredItems(searchItems);
+        setSearchedItems(searchItems);
       }, 500);
     } else {
-      setFilteredItems([]);
+      setSearchedItems([]);
     }
   }, [searchTerm, allItems]);
 
@@ -90,16 +89,6 @@ function App() {
     setFavoriteItems(favoritesWithoutRemovedItem);
   };
 
-  let onCartClick = () => {
-    setIsCartOpen(!isCartOpen);
-    setIsFavoritesOpen(false);
-  };
-
-  let onFavoritesClick = () => {
-    setIsFavoritesOpen(!isFavoritesOpen);
-    setIsCartOpen(false);
-  };
-
   let onCategoryClick = category => {
     if (category.type === "all") {
       setCategorisedItems([]);
@@ -109,36 +98,36 @@ function App() {
   };
 
   const whatToShow = categorisedItems.length ? categorisedItems : allItems;
+
   return (
-    <div className="container">
-      <Header
-        onCartClick={onCartClick}
-        onFavoritesClick={onFavoritesClick}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-      />
-      {isCartOpen ? (
-        <Cart items={cartItems} onRemoveFromCart={onRemoveFromCart} />
-      ) : isFavoritesOpen ? (
-        <Favorites
-          items={favoriteItems}
-          onRemoveFromFavorites={onRemoveFromFavorites}
-          onAddToCart={onAddToCart}
-        />
-      ) : allItems.length ? (
-        <div className="content">
-          <SideBar className="side" onCategoryClick={onCategoryClick} />
-          <Content
-            className="main"
-            items={filteredItems && searchTerm ? filteredItems : whatToShow}
-            onAddToCart={onAddToCart}
-            onAddtoFavorites={onAddtoFavorites}
-          />
-        </div>
-      ) : (
-        <h1>Loading</h1>
-      )}
-    </div>
+    <Router>
+      <div className="container">
+        <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <Switch>
+          <Route exact path="/">
+            <div className="content">
+              <SideBar className="side" onCategoryClick={onCategoryClick} />
+              <Content
+                className="main"
+                items={searchedItems && searchTerm ? searchedItems : whatToShow}
+                onAddToCart={onAddToCart}
+                onAddtoFavorites={onAddtoFavorites}
+              />
+            </div>
+          </Route>
+          <Route path="/cart">
+            <Cart items={cartItems} onRemoveFromCart={onRemoveFromCart} />
+          </Route>
+          <Route path="/favorites">
+            <Favorites
+              items={favoriteItems}
+              onRemoveFromFavorites={onRemoveFromFavorites}
+              onAddToCart={onAddToCart}
+            />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

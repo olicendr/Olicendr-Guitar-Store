@@ -5,10 +5,6 @@
   background-color: #fff;
 }
 
-h2 {
-  text-align: center;
-}
-
 .cart__item {
   display: flex;
   align-items: center;
@@ -26,4 +22,9 @@ h2 {
 .title {
   width: 300px;
   text-align: center;
+}
+
+.returnBtn {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./Cart.module.css";
 import OliButton from "../UI/OliButton";
 
@@ -18,7 +19,25 @@ const Cart = ({ items, onRemoveFromCart }) => {
 
   return (
     <div className={classes.cart}>
-      {items.length ? <div>{renderedList}</div> : <h2>Cart is empty</h2>}
+      <div className={classes.returnBtn}>
+        <Link to="/">
+          <OliButton>Back to Store</OliButton>
+        </Link>
+      </div>
+      {items.length ? (
+        <div>{renderedList}</div>
+      ) : (
+        <div
+          style={{
+            height: "400px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h2>Cart is empty</h2>
+        </div>
+      )}
     </div>
   );
 };

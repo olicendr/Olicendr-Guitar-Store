@@ -47,7 +47,7 @@ function App() {
         itemId: item.itemId,
         title: item.title,
         price: item.price,
-        imgSrc: item.imgSrc,
+        imageSource: item.imageSource,
       };
       setCartItems([...cartItems, payload]);
       onRemoveFromFavorites(item);
@@ -61,7 +61,7 @@ function App() {
         itemId: item.itemId,
         title: item.title,
         price: item.price,
-        imgSrc: item.imgSrc,
+        imageSource: item.imageSource,
       };
       setFavoriteItems([...favoriteItems, payload]);
     }

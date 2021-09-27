@@ -7,7 +7,7 @@ import OliButton from "../UI/OliButton";
 const Favorites = ({ items, onAddToCart, onRemoveFromFavorites }) => {
   const renderedList = items.map(item => {
     return (
-      <div className={classes.wrapper}>
+      <div className={classes.wrapper} key={item.id}>
         <Card
           key={item.id}
           item={item}

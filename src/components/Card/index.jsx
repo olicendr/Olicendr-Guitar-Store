@@ -6,7 +6,7 @@ const Card = ({ item, firstButton, secondButton }) => {
   return (
     <div key={item.id} className={classes.wrapper}>
       <div className={classes.imageWrapper}>
-        <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
+        <img src={`images/items/` + item.imageSource} alt={item.title}></img>
       </div>
       <div className={classes.title__wrapper}>
         <p className={classes.title}>{item.title}</p>

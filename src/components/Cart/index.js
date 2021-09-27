@@ -8,7 +8,7 @@ const Cart = ({ items, onRemoveFromCart }) => {
     return (
       <div key={item.itemId} className={classes.cart__item}>
         <div className={classes.item__picture}>
-          <img src={`images/items/` + item.imgSrc} alt={item.title}></img>
+          <img src={`images/items/` + item.imageSource} alt={item.title}></img>
         </div>
         <p className={classes.title}>{item.title}</p>
         <p>{item.price}</p>

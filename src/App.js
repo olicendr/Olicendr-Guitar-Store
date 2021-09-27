@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import { useLocalState } from "./hooks/useLocalState";
+
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import Content from "./components/Content";
@@ -9,17 +11,6 @@ import Cart from "./components/Cart";
 import Favorites from "./components/Favorites";
 
 import "./App.css";
-
-let useLocalState = (defaultValue, key) => {
-  const [value, setValue] = React.useState(() => {
-    const stickyValue = window.localStorage.getItem(key);
-    return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue;
-  });
-  React.useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-  return [value, setValue];
-};
 
 function App() {
   const [allItems, setAllItems] = useState([]);
